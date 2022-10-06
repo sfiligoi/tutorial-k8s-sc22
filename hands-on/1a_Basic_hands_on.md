@@ -339,4 +339,4 @@ kubectl logs job2-<username>-<index>-<hash>
 
 ## The end
 
-**Please make sure you did not leave any running pods or deployments. Jobs and associated completed pods are OK.**
+**Please make sure you did not leave any running pods. Jobs and associated completed pods are OK.**
