@@ -122,11 +122,13 @@ Next, **let’s create it again:**
 kubectl create -f pod1.yaml
 ```
 
-Does it have the same IP?
+Did it start on the same node?
 
 ```
 kubectl get pod -o wide pod-<username>
 ```
+
+Does it have the same IP?
 
 Log back into the pod:
 
