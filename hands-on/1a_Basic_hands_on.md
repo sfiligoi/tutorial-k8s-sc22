@@ -136,8 +136,6 @@ Log back into the pod:
 kubectl exec -it pod-<username> -- /bin/bash
 ```
 
-What does the network look like now (use ifconfig)?
-
 What is the status of the files your created?
 
 
@@ -147,13 +145,13 @@ Feel free to experiment some more, then **delete explicitly the pod.**
 kubectl delete pod pod-<username>
 ```
 
-## Using the job controller
+## Using the job object
 
 Most science applications need to run in batch mode, without interactive access and with limited runtime.
 
-We could submit Pods that do that, but we error handling at the system level is desired, too.
+We could submit Pods that do that, but we often want error handling at the system level, too.
 
-The job abstraction provides the option to restart your pod if it fails for any reason.
+The job object provides the option to restart your pod if it fails for any reason.
 
 You can copy-and-paste the lines below, but please do replace “username” with your own id.
 
@@ -202,7 +200,11 @@ Wait a minute and try again (a few times).
 What happened?
 (Hint: check the status and restart column)
 
-The pod should have ended... now what?
+The pod should have fist go into a Runnning state, followed by a Completed state...
+
+Which means, that it terminated...
+
+Now what?
 
 You may have noticed that we are printing out to standard output. You can retrieve that with:
 ```
@@ -256,6 +258,10 @@ kubectl get pods
 Wait a minute and try again (a few times).
 
 What is happening?
+
+Is the pod getting into a Completed staute?
+
+How many time did it start?
 
 When you are done looking at the pod, try to remove it:
 
