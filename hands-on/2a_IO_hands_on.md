@@ -502,8 +502,10 @@ Most applications will however need access to long term data for either/both inp
 
 In the Kubernetes cluster you are using we have a distributed filesystem, which allows using it for real data persistence.
 
-To get storage, we need to create an abstraction called PersistentVolumeClaim.
-By doing that we "Claim" some storage space - "Persistent Volume".
+To get storage, we need to create an object called PersistentVolumeClaim.
+
+By doing that we "Claim" some storage space from a "Persistent Volume".
+
 There will actually be PersistentVolume created, but it's a cluster-wide resource which you can not see.
 
 Create the file (replace username as always):
