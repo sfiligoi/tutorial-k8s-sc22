@@ -598,6 +598,8 @@ What do you see in /mnt/mylogs ?
 
 Once you are done exploring, please delete the pod.
 
+If you have time, try to do the same exercise but using emptyDir. And verify that the logs indeed do not get preserved between pod restarts.
+
 ## Attaching existing storage
 
 Sometimes you just need to attach to existing storage that is shared between multiple users.
@@ -660,7 +662,7 @@ When you are done, delete the pod.
 Most science users have large input data.
 If someone has not already pre-loaded them on a PVC, you will have to fetch them yourself.
 
-You can use any tool you are used to, from curl to ssh. You can either pre-load it to a PVC or fetch the data just-in-time, whateve more appropriate.
+You can use any tool you are used to, from curl to ssh. You can either pre-load it to a PVC or fetch the data just-in-time, whatever you feel is more appropriate.
 
 We do not have an explicit hands-on tutorial, but feel free to try out your favorite tool using what you have learned so far.
 
