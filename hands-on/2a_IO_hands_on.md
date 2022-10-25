@@ -65,8 +65,6 @@ Inside the pod, make some changes to
 
 Did that affect the content of the configmap?
 
-What happens if you delete and recreate the pod?
-
 Once you are done exploring, delete the pod and the configmap:
 ```
 kubectl delete pod c1-<username>
@@ -113,6 +111,20 @@ spec:
 ```
 
 Create the pod and once it has started, login using kubectl exec and check if the file is indeed in the /tmp/myconfig directory.
+
+Once again, try to modify their content.
+
+Log out, and update the content of either hello.txt or world.txt.
+
+Let's now update the configmap:
+
+```
+kubectl create configmap config2-<username> --from-file=hello.txt --from-file=world.txt --dry-run=client -o yaml |kubectl replace -f -
+```
+
+Log back into the node, and check the content of the files in /tmp/myconfig.
+
+Wait a minute (or so), and check again. The changes should propagate into the running pod. 
 
 Once you are done exploring, delete the pod and the configmap:
 ```
@@ -233,10 +245,12 @@ spec:
             path: pi.py
 ```
 
-Once the pod terminated, check if the result is correct:
+Once the pod terminated, check the result with:
 ```
 kubectl logs c3m-<usernam>-<hash>
 ```
+
+You should see a result that is slightly different than the before.
 
 You can now delete the pods and the configmap:
 ```
@@ -348,20 +362,29 @@ spec:
     volumeMounts:
     - name: scratch1
       mountPath: /mnt/myscratch
+    - name: ramdisk1
+      mountPath: /mytmp
   volumes:
   - name: scratch1
     emptyDir: {}
+  - name: ramdisk1
+    emptyDir:
+      medium: Memory
 ```
 
 Create the pod and once it has started, log into it using kubectl exec.
 
-Look at the mounted filesystem:
+Look at the mounted filesystems:
 
 ```
-df -k / /tmp /mnt/myscratch /dev/shm
+df -H / /mnt/myscratch /tmp /mytmp /dev/shm
 ```
 
-As you can see, / and /tmp are on the same filesystem, but our mount is completely sepaate.
+As you can see, / and /tmp are on the same filesystem, but /mnt/myscratch is a completely different filesystem.
+
+You should also notice that /dev/shm is tiny; the real ramdisk is /mytmp.
+
+*Note:* You can mount the ramdisk as /dev/shm (or /tmp). that way your applications will find it where they expect it to be.
 
 Once you are done exploring, please delete the pod.
 
