@@ -335,6 +335,8 @@ But the amount of space you have at your disposal is limited.
 
 If you need access to a larger (and often faster) local area, you should use the so-called ephemeral storage using emptyDir.
 
+Note that you can request either a disk-based or a memory-based partition. We will do both below.
+
 You can copy-and-paste the lines below, but please do replace “username” with your own id;\
 As mentioned before, all the participants in this hands-on session share the same namespace, so you will get name collisions if you don’t.
 
@@ -351,11 +353,11 @@ spec:
     image: centos:centos8
     resources:
       limits:
-        memory: 100Mi
+        memory: 8Gi
         cpu: 100m
         ephemeral-storage: 10Gi
       requests:
-        memory: 100Mi
+        memory: 4Gi
         cpu: 100m
         ephemeral-storage: 1Gi
     command: ["sh", "-c", "sleep 1000"]
@@ -395,7 +397,7 @@ While there are many uses for such a setup, for batch oriented workloads the mos
 
 Container images come with a pre-defined setup, and while they may have everything for your main application, 
 there may be some tools that are missing for your job initialization. To avoid creating a dedicated image
-we can instead use a separate image for the initialization phase, and pass tthe results using the emphemeral partition.
+we can instead use a separate image for the initialization phase, and pass the results using the emphemeral partition.
 
 As an example, let's build an application from source, and import it into the main container that does not contain any compilers:
 
@@ -471,7 +473,13 @@ spec:
     emptyDir: {}
 ```
 
-Create the pod and once it has started Running, log into it using kubectl exec.
+Create the pod and monitor what's going on with:
+
+```
+kubectl get events --sort-by=.metadata.creationTimestamp |grep s2-<username>
+```
+
+Once the main container has started Running, log into it using kubectl exec.
 
 You should now be able to execute the newly built binary:
 ```
@@ -479,6 +487,8 @@ You should now be able to execute the newly built binary:
 ```
 
 Can you find the source code anywhere?
+
+*Hint:* Did you notice any warning messages when you logged in?
 
 Once you are done exploring, please delete the pod.
 
