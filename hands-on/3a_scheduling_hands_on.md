@@ -112,7 +112,7 @@ spec:
 Once the pod started, login using kubectl exec and check what kind of GPU you got:
 
 ```
-nvidia-smi
+nvidia-smi -L
 ```
 
 You can see which node you landed on with
@@ -130,14 +130,16 @@ kind: Pod
 metadata:
   name: gp2-<username>
 spec:
-  requiredDuringSchedulingIgnoredDuringExecution:
-    nodeSelectorTerms:
-    - matchExpressions:
-      - key: nvidia.com/gpu.product
-        operator: In
-        values:
-        - NVIDIA-GeForce-GTX-1070
-        - NVIDIA-GeForce-GTX-1080-Ti
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: nvidia.com/gpu.product
+            operator: In
+            values:
+            - NVIDIA-GeForce-GTX-1070
+            - NVIDIA-GeForce-GTX-1080-Ti
   containers:
   - name: mypod
     image: nvidia/cuda:11.2.1-runtime-ubuntu20.04
@@ -171,14 +173,16 @@ kind: Pod
 metadata:
   name: gp3-<username>
 spec:
-  preferredDuringSchedulingIgnoredDuringExecution:
-    nodeSelectorTerms:
-    - matchExpressions:
-      - key: nvidia.com/gpu.product
-        operator: In
-        values:
-        - NVIDIA-A100-PCIE-40GB-MIG-2g.10gb
-        - NVIDIA-GeForce-RTX-2080-Ti
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: nvidia.com/gpu.product
+            operator: In
+            values:
+            - NVIDIA-A100-PCIE-40GB-MIG-2g.10gb
+            - Tesla-T4
   containers:
   - name: mypod
     image: nvidia/cuda:11.2.1-runtime-ubuntu20.04
