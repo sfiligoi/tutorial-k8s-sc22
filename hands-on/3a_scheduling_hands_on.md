@@ -320,7 +320,7 @@ spec:
       requests:
         memory: 100Mi
         cpu: 100m
-    command: ["sh", "-c", "echo 'Im a new pod' && sleep 1000"]
+    command: ["sh", "-c", "echo 'Im a new pod' && sleep 600"]
   securityContext:
     runAsGroup: 1000
     runAsUser: 1000
