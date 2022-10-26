@@ -294,6 +294,42 @@ Now check you Pod. How long did it take for it to start? What GPU type did you g
 
 After you are done exploring, remember to destroy the pod.
 
+## Federation
+
+The namespace we're running in already has the label marking it capable of federating with another cluster. Also the credentials for that were added to the namespace.
+
+The federation is established with Expanse the San Diego Supercomputer Center newest cluster, also capable of running kubernetes jobs.
+
+To launch a pod on Expanse, and have the proxy pod visible in our namespace, run the pod with a special annotation:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    multicluster.admiralty.io/elect: ""
+  name: federated-pod-<username>
+spec:
+  containers:
+  - name: mypod
+    image: ubuntu
+    resources:
+      limits:
+        memory: 100Mi
+        cpu: 100m
+      requests:
+        memory: 100Mi
+        cpu: 100m
+    command: ["sh", "-c", "echo 'Im a new pod' && sleep infinity"]
+  securityContext:
+    runAsGroup: 1000
+    runAsUser: 1000
+```
+
+Note that the pod is runnung as a user 1000. Unlike Nautilus, Expanse does not allow running as root even in containers.
+
+Now look which node the pod is running on. It should be the `admiralty-sc22-expanse-sc22-*`, which means it's running in federated cluster, but we can't see which exactly node.
+
 ## The end
 
 We do not include hands-on exercises based on priorities, as they are very non-deterministic. We also do not include privileged exercises, as we cannot afford it on the production system. Hopefully the sides provided clear enough instructions for you to try them at home on your own cluster.
