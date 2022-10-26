@@ -28,6 +28,6 @@ All times in Central Time (Dallas, TX, USA).
 11:10pm - Scheduling Hands On
 11:40pm - Monitoring your compute (Lecture)
 11:45pm - Additional tools in Kubernetes (Lecture)
-12:00pm - Closeout
+11:55pm - Closeout
 ```
 
