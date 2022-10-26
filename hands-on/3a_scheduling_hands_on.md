@@ -348,6 +348,12 @@ kubectl get pod -o yaml <pod_name>
 
 (look for the schedulerName field)
 
+You can also exec into the pod and see that it's running in Expanse IP range:
+
+```
+kubectl exec -it <pod_name> curl ifconfig.me
+```
+
 ## The end
 
 We do not include hands-on exercises based on priorities, as they are very non-deterministic. We also do not include privileged exercises, as we cannot afford it on the production system. Hopefully the sides provided clear enough instructions for you to try them at home on your own cluster.
