@@ -131,15 +131,15 @@ metadata:
   name: gp2-<username>
 spec:
   affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: nvidia.com/gpu.product
-            operator: In
-            values:
-            - NVIDIA-GeForce-GTX-1070
-            - NVIDIA-GeForce-GTX-1080-Ti
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: nvidia.com/gpu.product
+            operator: In
+            values:
+            - NVIDIA-GeForce-GTX-1070
+            - NVIDIA-GeForce-GTX-1080-Ti
   containers:
   - name: mypod
     image: nvidia/cuda:11.2.1-runtime-ubuntu20.04
@@ -174,15 +174,15 @@ metadata:
   name: gp3-<username>
 spec:
   affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: nvidia.com/gpu.product
-            operator: In
-            values:
-            - NVIDIA-A100-PCIE-40GB-MIG-2g.10gb
-            - Tesla-T4
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: nvidia.com/gpu.product
+            operator: In
+            values:
+            - NVIDIA-A100-PCIE-40GB-MIG-2g.10gb
+            - Tesla-T4
   containers:
   - name: mypod
     image: nvidia/cuda:11.2.1-runtime-ubuntu20.04
