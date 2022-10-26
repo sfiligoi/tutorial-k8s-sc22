@@ -330,6 +330,24 @@ Note that the pod is runnung as a user 1000. Unlike Nautilus, Expanse does not a
 
 Now look which node the pod is running on. It should be the `admiralty-sc22-expanse-sc22-*`, which means it's running in federated cluster, but we can't see which exactly node.
 
+```
+kubectl get pod -o wide <pod_name>
+```
+
+Compare the node name to the one for federation
+
+```
+kubectl get nodes
+```
+
+Also you can investigate the differences with regular pods - the pod you just ran will have the Admiraly scheduler instead of regular one:
+
+```
+kubectl get pod -o yaml <pod_name>
+```
+
+(look for the schedulerName field)
+
 ## The end
 
 We do not include hands-on exercises based on priorities, as they are very non-deterministic. We also do not include privileged exercises, as we cannot afford it on the production system. Hopefully the sides provided clear enough instructions for you to try them at home on your own cluster.
