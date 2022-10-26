@@ -176,8 +176,9 @@ spec:
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
+      - weight: 1
+        preference:
+          matchExpressions:
           - key: nvidia.com/gpu.product
             operator: In
             values:
