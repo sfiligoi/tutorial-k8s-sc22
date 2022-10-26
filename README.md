@@ -24,10 +24,10 @@ All times in Central Time (Dallas, TX, USA).
  9:45am - Dealing with data Hands On - Part 1
 10:00am - Break
 10:30am - Dealing with data Hands On - Part 2
-10:45am - Kubernetes resource scheduling (Lecture)
-11:00pm - Scheduling Hands On
-11:30pm - Monitoring your compute (Lecture and Hands-on)
+10:50am - Kubernetes resource scheduling (Lecture)
+11:10pm - Scheduling Hands On
+11:40pm - Monitoring your compute (Lecture)
 11:45pm - Additional tools in Kubernetes (Lecture)
-11:55pm - Closeout 
+11:55pm - Closeout
 ```
 
