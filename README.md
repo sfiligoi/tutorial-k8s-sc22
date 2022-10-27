@@ -13,7 +13,6 @@ The main aim of this tutorial is to show how one can transition batch-oriented s
 
 ## Agenda
 
-(tentative, preliminary)
 All times in Central Time (Dallas, TX, USA).
 
 ```
